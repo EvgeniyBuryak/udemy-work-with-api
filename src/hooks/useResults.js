@@ -12,16 +12,17 @@ export default () => {
             s = currentDate.getSeconds();
 
         try {
-            const response = await zpRu.get('/collapsed_vacancies', {
+            const response = await zpRu.get('/vacancies', {
                 params: {
-                    limit: 5,
+                    limit: 15,
                     //term: searchTerm,
                     q: searchTerm,
                     city_id: 826
                 }
             });
-            //setResults(response.data.vacancies);
-            const vacancies = response.data.vacancies;
+            setResults(response.data.vacancies);
+            
+            /*const vacancies = response.data.vacancies;
 
             const updateResults = [...results, ...vacancies.map((vacancy, index) => {
 
@@ -32,7 +33,7 @@ export default () => {
                 }
             })];
 
-            setResults(updateResults);
+            setResults(updateResults);*/
         } catch (err) {
             console.log(`Current time: ${h}:${m}:${s} - ${err}`);
             setErrorMessage('Something went wrong');

@@ -8,11 +8,27 @@ import ResultsList from '../components/ResultsList';
 const SearchScreen = () => {
     const [term, setTerm] = useState('');
     const [searchApi, results, errorMessage] = useResults();
-
-    const filterResultsByPrice = (price) => {
-        // price === '$' || '$$' || '$$$'
+    console.log(results);
+    const filterResultsByDisctrict = (id) => {
+        /**
+         * "vacancies": [
+             {
+                  "contact": {
+                        "address": "Новосибирск, Заельцовский район, Красный проспект, 79",        
+                        "district": {
+                            "id": 253189,
+                            "title": "Заельцовский"
+                        }
+                    }
+              }
+         */
+        // 253189 -> Заельцовский
+        // "id": 253196, "title": "Центральный"
+        // "id": 253193, "title": "Октябрьский"
+        
         return results.filter(result => {
-            return result.price === price;
+            //console.log(result.contact.district.id === id);
+            return result.contact?.district?.id === id;
         });
     };
 
@@ -25,9 +41,9 @@ const SearchScreen = () => {
         />
         {errorMessage ? <Text>{errorMessage}</Text> : null}
         <Text>We have found {results.length} results</Text>
-        <ResultsList title="Cost Effective"/>
-        <ResultsList title="Bit Pricier"/>
-        <ResultsList title="Big Spender"/>
+        <ResultsList results={filterResultsByDisctrict(253189)} title="Район Заельцовский"/>
+        <ResultsList results={filterResultsByDisctrict(253196)} title="Район Центральный"/>
+        <ResultsList results={filterResultsByDisctrict(253193)} title="Район Октябрьский"/>
         <FlatList
             keyExtractor={(item) => item.id.toString()}
             data={results}
