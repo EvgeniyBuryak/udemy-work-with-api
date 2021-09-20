@@ -1,17 +1,14 @@
 import React, { useCallback } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-
+import ResultaDetail from './ResultsDetail';
+ 
 const ResultsList = ({ title, results }) => {
     //console.log(results);
 
     const keyExtractor = useCallback((item) => item.id.toString(), []);
 
     const renderItem = useCallback(({ item }) => {
-        return <View>
-                <Text>
-                    {item.header}
-                </Text>
-            </View>
+        return <ResultaDetail result={item}/>
     }, []);
 
     return (
