@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import ResultaDetail from './ResultsDetail';
  
 const ResultsList = ({ title, results }) => {
-    //console.log(results);
 
     const keyExtractor = useCallback((item) => item.id.toString(), []);
 

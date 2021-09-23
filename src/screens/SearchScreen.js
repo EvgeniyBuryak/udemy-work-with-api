@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-//import yelp from '../api/yelp';  
+import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import SearchBar from '../components/SearchBar';
-//import useResults from '../hooks/useResults';
 import ResultsList from '../components/ResultsList';
 import zpRu from '../api/yelp';
 
@@ -25,9 +23,7 @@ const SearchScreen = () => {
         }
     };
 
-    const filterResultsByDisctrict = (id) => {
-        /**
-         * 
+    /** 
         "vacancies": [
         {
           "contact": {
@@ -38,19 +34,25 @@ const SearchScreen = () => {
             }
           }
         }
-         */
-        // 253189 -> Заельцовский
-        // "id": 253196, "title": "Центральный"
-        // "id": 253193, "title": "Октябрьский"
-        
+        * 253189 -> Заельцовский
+        * "id": 253196, "title": "Центральный"
+        * "id": 253193, "title": "Октябрьский" 
+        */
+    const findAllDistrict = results.reduce((allDistricts, result) => {
+            return allDistricts + `Districs {id: ${result.contact?.district?.id} title: ${result.contact?.district?.title}},\n`;
+    }, '');
+
+    const filterResultsByDistrict = (id) => {
         return results.filter(result => {            
             return result.contact?.district?.id === id;
         });
     };
 
     useEffect(()=>{
-        searchApi();
+        searchApi();                
     }, []);
+
+    console.log(Array.from(new Set(findAllDistrict.split(','))));
 
     return (
       <View>
@@ -61,9 +63,11 @@ const SearchScreen = () => {
         />
         {errorMessage ? <Text>{errorMessage}</Text> : null}
         <Text>We have found {results.length} results</Text>
-        <ResultsList results={filterResultsByDisctrict(253189)} title="Район Заельцовский"/>
-        <ResultsList results={filterResultsByDisctrict(253196)} title="Район Центральный"/>
-        <ResultsList results={filterResultsByDisctrict(253193)} title="Район Октябрьский"/>        
+        <ScrollView> 
+            <ResultsList results={filterResultsByDistrict(253189)} title="Район Заельцовский"/>
+            <ResultsList results={filterResultsByDistrict(253196)} title="Район Центральный"/>
+            <ResultsList results={filterResultsByDistrict(253193)} title="Район Октябрьский"/>        
+        </ScrollView>
       </View>
     );
 };
