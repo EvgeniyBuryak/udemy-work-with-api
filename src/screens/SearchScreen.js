@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import ResultsList from '../components/ResultsList';
 import zpRu from '../api/yelp';
@@ -55,23 +55,35 @@ const SearchScreen = () => {
     console.log(Array.from(new Set(findAllDistrict.split(','))));
 
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <SearchBar
                 term={term}
                 onTermChange={setTerm}
                 onTermSubmit={() => searchApi(term)}
         />
         {errorMessage ? <Text>{errorMessage}</Text> : null}
-        <Text>We have found {results.length} results</Text>
+        
         <ScrollView> 
-            <ResultsList results={filterResultsByDistrict(253189)} title="Район Заельцовский"/>
+            <ResultsList results={filterResultsByDistrict(253187)} title="Район Дзержинский"/>
             <ResultsList results={filterResultsByDistrict(253196)} title="Район Центральный"/>
-            <ResultsList results={filterResultsByDistrict(253193)} title="Район Октябрьский"/>        
+            <ResultsList results={filterResultsByDistrict(253188)} title="Район Железнодорожный"/>
+            <ResultsList results={filterResultsByDistrict(253193)} title="Район Октябрьский"/>
+            <ResultsList results={filterResultsByDistrict(253195)} title="Район Советский"/>
         </ScrollView>
+
+        <Image style={styles.image} source={{ uri: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/104.png' }} />
       </View>
     );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    image: {
+        width: 150,
+        height: 60,
+        borderRadius: 4,
+        marginBottom: 5,
+        marginTop: 5,
+    },
+});
 
 export default SearchScreen;

@@ -10,12 +10,15 @@ const ResultsList = ({ title, results }) => {
         return <ResultaDetail result={item}/>
     }, []);
 
+    // <Text>Results: {results.length}</Text>
+
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
-            <Text>Results: {results.length}</Text>
+            
             <FlatList
                 horizontal={true}
+                showsHorizontalScrollIndicator={false}
                 data={results}
                 keyExtractor={keyExtractor}
                 renderItem={renderItem}
@@ -27,7 +30,12 @@ const ResultsList = ({ title, results }) => {
 const styles = StyleSheet.create({
     title: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginLeft: 15,
+        marginBottom: 5,
+    },
+    container: {
+        marginBottom: 10,
     }
 });
 
