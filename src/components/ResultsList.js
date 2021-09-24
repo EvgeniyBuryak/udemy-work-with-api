@@ -1,13 +1,17 @@
 import React, { useCallback } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import ResultaDetail from './ResultsDetail';
  
-const ResultsList = ({ title, results }) => {
+const ResultsList = ({ title, results, navigation }) => {
 
     const keyExtractor = useCallback((item) => item.id.toString(), []);
 
     const renderItem = useCallback(({ item }) => {
-        return <ResultaDetail result={item}/>
+        return (
+                <TouchableOpacity onPress={() => navigation.navigate('ResultsShow')}>
+                    <ResultaDetail result={item}/> 
+                </TouchableOpacity>
+            )
     }, []);
 
     // <Text>Results: {results.length}</Text>
