@@ -4,8 +4,7 @@ import SearchBar from '../components/SearchBar';
 import ResultsList from '../components/ResultsList';
 import zpRu from '../api/yelp';
 
-const SearchScreen = ({ navigation }) => {
-    
+const SearchScreen = () => {
     const [term, setTerm] = useState('');    
     const [results, setResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
@@ -65,11 +64,11 @@ const SearchScreen = ({ navigation }) => {
         {errorMessage ? <Text>{errorMessage}</Text> : null}
         
         <ScrollView> 
-            <ResultsList results={filterResultsByDistrict(253187)} title="Район Дзержинский" navigation={navigation}/>
-            <ResultsList results={filterResultsByDistrict(253196)} title="Район Центральный" navigation={navigation}/>
-            <ResultsList results={filterResultsByDistrict(253188)} title="Район Железнодорожный" navigation={navigation}/>
-            <ResultsList results={filterResultsByDistrict(253193)} title="Район Октябрьский" navigation={navigation}/>
-            <ResultsList results={filterResultsByDistrict(253195)} title="Район Советский" navigation={navigation}/>
+            <ResultsList results={filterResultsByDistrict(253187)} title="Район Дзержинский"/>
+            <ResultsList results={filterResultsByDistrict(253196)} title="Район Центральный"/>
+            <ResultsList results={filterResultsByDistrict(253188)} title="Район Железнодорожный"/>
+            <ResultsList results={filterResultsByDistrict(253193)} title="Район Октябрьский"/>
+            <ResultsList results={filterResultsByDistrict(253195)} title="Район Советский"/>
         </ScrollView>
 
         <Image style={styles.image} source={{ uri: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/104.png' }} />
