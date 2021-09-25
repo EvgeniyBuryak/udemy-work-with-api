@@ -7,15 +7,15 @@ const ResultsList = ({ title, results, navigation }) => {
 
     const keyExtractor = useCallback((item) => item.id.toString(), []);
 
-    const renderItem = useCallback(({ item }) => {
+    const renderItem = useCallback(({ item }) => {        
         return (
-                <TouchableOpacity onPress={() => navigation.navigate('ResultsShow')}>
+                <TouchableOpacity onPress={() => navigation.navigate('ResultsShow', { id: item.id })}>
                     <ResultaDetail result={item}/> 
                 </TouchableOpacity>
             )
     }, []);
 
-    // <Text>Results: {results.length}</Text>
+    // <Text>Results: {results.length}</Text>    
 
     return (
         <View style={styles.container}>
