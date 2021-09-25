@@ -6,7 +6,7 @@ const ResultsShowScreen = ({ navigation }) => {
     const [result, setResult] = useState(null);
     const id = navigation.getParam('id');
 
-    console.log(result);
+    // console.log(result);
 
     const getResult = async (id) => {
         const response = await zpRu.get('', {
@@ -20,11 +20,11 @@ const ResultsShowScreen = ({ navigation }) => {
     useEffect(()=> {
         getResult(id);
     }, []);
-
+    // <Text>${result?.vacancies?.header}</Text>
      return (
         <View>
             <Text>Results Show</Text>
-            <Text>${result?.vacancies?.header}</Text>
+            
         </View>
      );
 };
