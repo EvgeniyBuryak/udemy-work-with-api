@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import ResultsList from '../components/ResultsList';
-import zpRu from '../api/yelp';
+import zpRu from '../api/zp.ru.api';
 
 const SearchScreen = () => {
     const [term, setTerm] = useState('');    
     const [results, setResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     
-    const searchApi = async (searchTerm) => {
+    const getResult = async (searchTerm) => {
         try {
-            const response = await zpRu.get('/vacancies', {
+            const response = await zpRu.get('', {
                 params: {
                     q: searchTerm
                 }
@@ -49,7 +49,7 @@ const SearchScreen = () => {
     };
 
     useEffect(()=>{
-        searchApi();                
+        getResult();                
     }, []);
 
     console.log(Array.from(new Set(findAllDistrict.split(','))));

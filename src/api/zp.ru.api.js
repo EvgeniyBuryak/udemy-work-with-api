@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: 'https://api.zp.ru/v1',
+    baseURL: 'https://api.zp.ru/v1/vacancies',
     params: {
         limit: 50,        
-        city_id: 826
+        geo_id: 826
     }
 });
