@@ -9,14 +9,12 @@ const ResultsList = ({ title, results, navigation }) => {
 
     const renderItem = useCallback(({ item }) => {        
         return (
-                <TouchableOpacity onPress={() => navigation.navigate('ResultsShow', { id: item.id })}>
+                <TouchableOpacity onPress={() => navigation.navigate('ResultsShow', { id: item.publication.vacancy_id })}>
                     <ResultaDetail result={item}/> 
                 </TouchableOpacity>
             )
-    }, []);
-
-    // <Text>Results: {results.length}</Text>    
-
+    }, []);  
+    
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
