@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 
 const ResultaDetail = ({ result }) => {
-    console.log(`${result.contact?.district?.title}: ${result.id}`);
+    //console.log(`${result.contact?.district?.title}: ${result.id}`);
     
     return (
         <View style={styles.container}>

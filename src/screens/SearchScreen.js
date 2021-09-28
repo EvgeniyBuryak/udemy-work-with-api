@@ -9,7 +9,7 @@ const SearchScreen = () => {
     const [results, setResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     
-    const getResult = async (searchTerm) => {
+    const getResults = async (searchTerm) => {
         try {
             const response = await zpRu.get('', {
                 params: {
@@ -49,7 +49,7 @@ const SearchScreen = () => {
     };
 
     useEffect(()=>{
-        getResult();                
+        getResults();                
     }, []);
 
     console.log(Array.from(new Set(findAllDistrict.split(','))));
@@ -59,7 +59,7 @@ const SearchScreen = () => {
         <SearchBar
                 term={term}
                 onTermChange={setTerm}
-                onTermSubmit={() => searchApi(term)}
+                onTermSubmit={() => getResults(term)}
         />
         {errorMessage ? <Text>{errorMessage}</Text> : null}
         
