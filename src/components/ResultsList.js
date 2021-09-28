@@ -4,7 +4,10 @@ import ResultaDetail from './ResultsDetail';
 import { withNavigation } from 'react-navigation';
  
 const ResultsList = ({ title, results, navigation }) => {
-
+    if (!results.length) {
+        return null;
+    }
+    
     const keyExtractor = useCallback((item) => item.id.toString(), []);
 
     const renderItem = useCallback(({ item }) => {        
